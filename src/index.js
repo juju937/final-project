@@ -144,11 +144,9 @@ navArrowRight.addEventListener("click", () => {
   navToday.classList.remove("nav__day-checked");
   navToday.classList.add("nav__arrow");
   navToday.classList.add("left");
-  navToday.style.cursor = "pointer";
-  navToday.style.display = "flex";
 
   navToday.innerHTML = `
-    <span class="nav__arrow-icon"><i class="fa-solid fa-chevron-right"></i></span>
+    <span class="nav__arrow-icon"><i class="fa-solid fa-chevron-left"></i></span>
   `;
 
   changeDays(daysCount);
