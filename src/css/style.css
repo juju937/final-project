@@ -1,0 +1,135 @@
+/*--------------------------------- GENERAL -----------------------------------*/
+
+@font-face {
+  font-family: "Roboto";
+  src: 
+      local("Roboto"),
+      url(../fonts/Roboto-Black.ttf) format("truetype");
+      font-weight: 900;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: 
+      local("Roboto"),
+      url(../fonts/Roboto-Medium.ttf) format("truetype");
+      font-weight: 500;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: 
+      local("Roboto"),
+      url(../fonts/Roboto-Regular.ttf) format("truetype");
+      font-weight: 400;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: 
+      local("Roboto"),
+      url(../fonts/Roboto-Thin.ttf) format("truetype");
+      font-weight: 100;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #16A6AF;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12), 0px 2px 2px 0px rgba(0,0,0,0.24);
+  text-transform: uppercase;
+  color:#fff;
+  height: 40px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: .5s;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #16A6AF;
+  cursor: pointer;
+}
+
+/*--------------------------------- INDEX PAGE -----------------------------------*/
+
+.container {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center right;
+}
+
+.client-container {
+  background-image: url(/src/images/background_guest.jpeg);
+}
+
+.header {
+  max-width: 990px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__logo {
+  text-transform: uppercase;
+}
+
+.header__logo_link {
+  color: #fff;
+  font-weight: 900;
+  font-size: 34px;
+}
+
+.header__logo_accent {
+  font-weight: 100;
+}
+
+.page-nav {
+  max-width: 990px;
+  margin: 0 auto;
+}
+
+.page-nav__days {
+  display: flex;
+}
+
+.page-nav__day {
+  width: 124px;
+  height: 48px;
+  background-color: #fff;
+  opacity: 0.9;
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12), 0px 2px 2px 0px rgba(0,0,0,0.24);
+  padding: 10px 20px;
+}
