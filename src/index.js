@@ -2,7 +2,7 @@ const loginButton = document.querySelector(".login__button");
 
 loginButton.addEventListener("click", (e) => {
   e.preventDefault();
-  document.location="./admin.html";
+  window.location.href="/src/admin.html";
 })
 
 const navDays = Array.from(document.querySelectorAll(".page-nav__day"));
@@ -375,8 +375,10 @@ function clickSeance() {
         seanceId = seance.dataset.seanceid;
         localStorage.setItem("seanceId", seanceId);
 
-        document.location="./hall.html";
+        window.location.href="/src/hall.html";
       })
+    } else {
+      seance.preventDefault();
     }
   })
 

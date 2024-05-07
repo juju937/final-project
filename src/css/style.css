@@ -36,6 +36,14 @@
   font-family: "Roboto";
   src: 
       local("Roboto"),
+      url(../fonts/Roboto-Light.ttf) format("truetype");
+      font-weight: 300;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: 
+      local("Roboto"),
       url(../fonts/Roboto-Thin.ttf) format("truetype");
       font-weight: 100;
 }
@@ -265,9 +273,20 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .movie-seances__time_disabled {
   background-color: #e2e2e2;
   color: #989898;
+  cursor: default;
+}
+
+/*--------------------------------- HALL VIEW PAGE -----------------------------------*/
+
+.hall_view {
+  padding: 0;
+  width: 100%;
+  background-color: rgba(241, 235, 230, 0.95);
+  border-radius: 2px;
 }
