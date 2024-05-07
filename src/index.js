@@ -1,8 +1,13 @@
-const loginButton = document.querySelector(".header__button");
+const loginButton = document.querySelector(".login__button");
+
+loginButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  document.location="./admin.html";
+})
 
 const navDays = Array.from(document.querySelectorAll(".page-nav__day"));
 const navToday = document.querySelector(".nav__day_current");
-const navArrowRight = document.querySelector(".right");
+const navNextDates = document.querySelector(".right");
 
 let daysCount = 1;
 
@@ -13,7 +18,7 @@ const weekDays = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
 let todayWeekDay;
 
 const currentDay = new Date();
-let checkedDate;
+let chosenDate;
 let selectedDate;
 let selectedMonth;
 let selectedYear;
@@ -30,12 +35,7 @@ let movie;
 let movieSeances;
 let movieSeancesList;
 
-// Переход на авторизацию с кнопки "Войти"
-
-loginButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  document.location="./admin-login.html";
-})
+// --------------------------------------------------------------- PAGE NAV & CALENDAR ---------------------------------
 
 // Установка даты и дня недели сегодняшнего дня
 
@@ -118,17 +118,17 @@ function sortDays(navDays) {
 
 // Выделение сегодняшнего дня
 
-navToday.classList.add("nav__day-checked");
+navToday.classList.add("nav__day-chosen");
 navToday.style.cursor = "default";
 navToday.dataset.date = currentDay.toJSON().split("T")[0];
 
-if(navToday.classList.contains("nav__day-checked")) {
+if(navToday.classList.contains("nav__day-chosen")) {
   selectedDate = currentDay.getDate();
   selectedMonth = currentDay.getMonth() + 1;
   selectedYear = currentDay.getFullYear();
 
   getDay(selectedDate, selectedMonth, selectedYear);
-  localStorage.setItem("checkedDate", date);
+  localStorage.setItem("chosenDate", date);
 }
 
 setToday(currentDay);
@@ -138,10 +138,10 @@ markPastSeances();
 
 // При нажатии на правую стрелку
 
-navArrowRight.addEventListener("click", () => {
+navNextDates.addEventListener("click", () => {
   daysCount++;
   
-  navToday.classList.remove("nav__day-checked");
+  navToday.classList.remove("nav__day-chosen");
   navToday.classList.add("nav__arrow");
   navToday.classList.add("left");
 
@@ -165,7 +165,6 @@ navToday.addEventListener("click", () => {
     } else if (daysCount === 0) {
       navToday.classList.remove("nav__arrow");
       navToday.classList.remove("left");
-      navToday.style.display = "block";
     
       navToday.innerHTML = `
         <span class="nav__current-date">Сегодня</span>
@@ -176,16 +175,15 @@ navToday.addEventListener("click", () => {
       setDays();
 
       navDays.forEach(day => {
-        if(!day.classList.contains("nav__day-checked")) {
-          navToday.classList.add("nav__day-checked");
-          navToday.style.cursor = "default";
+        if(!day.classList.contains("nav__day-chosen")) {
+          navToday.classList.add("nav__day-chosen");
 
           selectedDate = currentDay.getDate();
           selectedMonth = currentDay.getMonth() + 1;
           selectedYear = currentDay.getFullYear();
         
           getDay(selectedDate, selectedMonth, selectedYear);
-          localStorage.setItem("checkedDate", date);
+          localStorage.setItem("chosenDate", date);
         }
       })
   
@@ -206,22 +204,20 @@ navDaysSorted.forEach(day => {
   day.addEventListener("click", () => {
 
     navDaysSorted.forEach(item => {
-      item.classList.remove("nav__day-checked");
-      item.style.cursor = "pointer";
+      item.classList.remove("nav__day-chosen");
     })
 
     if(!day.classList.contains("nav__arrow")) {
-      day.classList.add("nav__day-checked");
-      day.style.cursor = "default";
+      day.classList.add("nav__day-chosen");
 
-      checkedDate = new Date(day.dataset.date);
+      chosenDate = new Date(day.dataset.date);
 
-      selectedDate = checkedDate.getDate();
-      selectedMonth = checkedDate.getMonth() + 1;
-      selectedYear = checkedDate.getFullYear();
+      selectedDate = chosenDate.getDate();
+      selectedMonth = chosenDate.getMonth() + 1;
+      selectedYear = chosenDate.getFullYear();
         
       getDay(selectedDate, selectedMonth, selectedYear);
-      localStorage.setItem("checkedDate", date);
+      localStorage.setItem("chosenDate", date);
 
       markPastSeances();
       clickSeance();
@@ -229,6 +225,8 @@ navDaysSorted.forEach(day => {
     
   })
 })
+
+// --------------------------------------------------------------- MOVIE LIST & API ---------------------------------
 
 // Формирование списка фильмов и сеансов по ним
 
@@ -271,7 +269,7 @@ function getMovies(data) {
         // Формирование названия зала и списка для сеансов
 
         hallsSeances += `
-        <h3 class="movie-seances__hall" data-hallid="${hall.id}">${hall.hall_name}</h3>
+        <div class="movie-seances__box"><h3 class="movie-seances__hall" data-hall__id="${hall.id}">${hall.hall_name}</h3>
         <ul class="movie-seances__list">
         `;
 
@@ -279,13 +277,13 @@ function getMovies(data) {
           // Формирование сеансов для нужного зала
 
           hallsSeances += `
-          <li class="movie-seances__time" data-seanceid="${seance.id}" data-hallid="${hall.id}" data-filmid="${film.id}">
+          <li class="movie-seances__time" data-seance__id="${seance.id}" data-hall__id="${hall.id}" data-film__id="${film.id}">
             ${seance.seance_time}
           </li>
           `;
         });
         
-        hallsSeances += `</ul>`;
+        hallsSeances += `</ul></div>`;
       };
     });
   
@@ -293,10 +291,10 @@ function getMovies(data) {
       // Формирование блока с фильмом
 
       main.insertAdjacentHTML("beforeend", `
-        <section class="movie" data-filmid="${film.id}">
+        <section class="movie" data-film__id="${film.id}">
           <div class="movie__info">
             <div class="movie__poster">
-              <img src="${film.film_poster}" alt="Постер фильма ${film.film_name}" class="movie__poster_image">
+              <img class="movie__poster_img" src="${film.film_poster}" alt="Постер к фильму ${film.film_name}">
             </div>
             <div class="movie__description">
               <h2 class="movie__title">${film.film_name}</h2>
