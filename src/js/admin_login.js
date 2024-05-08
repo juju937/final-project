@@ -20,6 +20,8 @@ loginForm.addEventListener('click', (e) => {
     	console.log( data );
     	if (data.success) {
     		window.location.href="./admin_index.html";
-    	}
+    	} else {
+        alert('Неверный логин или пароль, попробуйте снова.')
+      }
     });
 })	
