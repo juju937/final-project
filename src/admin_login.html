@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="admin-container container">
+
+    <header class="header header__admin">
+      <h1 class="header__logo"><a class="header__logo_link" href="index.html">Идём<span class="header__logo_accent">в</span>кино</a></h1>
+      <h2 class="header__sub">Администраторррская</h2>
+    </header>
+
+    <section class="admin__autorize">
+      <h2 class="admin__autorize-header">
+        Авторизация
+      </h2>
+
+      <form class="admin__login-form">
+        <label class="login-form">
+        <span class="form-title">E-mail</span>
+        <input type="email" class="login-field email" name="admin-email" placeholder="example@domain.xyz" id="login_email">
+        <span class="form-title">Пароль</span>
+        <input type="password" class="login-field password" name="admin-password" id="login_password">
+        </label>
+
+        <button class="button-autorize button">Авторизоваться</button>
+      </form>
+    </section>
+
+  </div>
+  <script src="./js/admin_login.js"></script>
+  
+</body>
+</html>
