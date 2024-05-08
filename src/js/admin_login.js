@@ -19,9 +19,9 @@ loginForm.addEventListener('click', (e) => {
     .then( (data) => {
     	console.log( data );
     	if (data.success) {
-    		window.location.href="./admin_index.html";
+    		window.location.href="admin_index.html";
     	} else {
         alert('Неверный логин или пароль, попробуйте снова.')
       }
     });
-})	
+})
