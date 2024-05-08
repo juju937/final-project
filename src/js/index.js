@@ -104,7 +104,7 @@ function getDay(selectedDate, selectedMonth, selectedYear) {
   if(selectedMonth < 9) {
     gottenMonth = `0${selectedMonth}`;
   } else {
-    searchMonth = gottenMonth;
+    gottenMonth = selectedMonth;
   }
 
   date = `${selectedYear}-${gottenMonth}-${gottenDate}`;

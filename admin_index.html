@@ -14,16 +14,66 @@
 <body>
 
   <div class="admin-container container">
+
     <header class="header header__admin">
       <h1 class="header__logo"><a class="header__logo_link" href="admin_index.html">Идём<span class="header__logo_accent">в</span>кино</a></h1>
       <h2 class="header__sub">Администраторррская</h2>
     </header>
 
     <main class="admin__main">
-      
+
+      <section class="admin__section halls">
+        <div class="admin__section-header">
+          <h2 class="section-header-text">
+            Управление залами
+          </h2>
+          <i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i>
+        </div>
+
+        <div class="conf-step__wrapper">
+          <span class="conf-step__wrapper-text">Доступные залы:</span>
+          <ul class="wrapper__halls-list">
+            <li class="halls-list__item">
+              <span class="halls-list__item-name">Зал 1</span> <button class="admin__button-remove halls-remove"><i class="fa-solid fa-trash" title="Удалить зал"></i></button>
+            </li>
+            <li class="halls-list__item">
+              <span class="halls-list__item-name">Зал 2</span> <button class="admin__button-remove halls-remove"><i class="fa-solid fa-trash" title="Удалить зал"></i></button>
+            </li>
+          </ul>
+
+          <button class="admin__button-hall button">Создать зал</button>
+        </div>
+      </section>
+
     </main>
 
   </div>
+
+  <div class="popup__window popup__manage-halls admin-container container hidden">
+    <div class="popup-content add-hall">
+      <div class="popup__header">
+        <h2 class="popup__header-text">Добавление зала</h2>
+        <div class="popup__close">
+          <i class="fa-solid fa-xmark" title="Закрыть"></i>
+        </div>
+      </div>
+
+      <form class="popup__form add-hall">
+        <label class="admin_label add-hall_label">
+          <span class="popup__form-legend">Название зала</span>
+          <input class="popup_input add-hall-input" type="text" placeholder="Например, «Зал 1»" required>
+        </label>
+
+        <div class="popup__buttons">
+          <button class="popup__button_save popup__add-hall_button_add button" type="submit">Добавить зал</button>
+          <button class="popup__button_cancel popup__add-hall_button_cancel button" type="reset">Отменить</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="./src/js/admin_halls.js"></script>
   
 </body>
 </html>
