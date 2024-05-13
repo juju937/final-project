@@ -1,5 +1,6 @@
 // Управление залами
 
+const sectionSpoiler = document.querySelectorAll(".admin__section-header")
 const hallsInfo = document.querySelector(".conf-step__wrapper-text");
 const hallsList = document.querySelector(".wrapper__halls-list");
 const hallButton = document.querySelector(".admin__button-hall");
@@ -44,6 +45,23 @@ popupClose.addEventListener('click', () => {
   popupHallNew.classList.add("hidden");
 })
 
+// Открыть/ скрыть блоки нажатием на заголовок блока (или стрелку справа)
+
+  sectionSpoiler.forEach((element) => {
+    element.addEventListener('click', () => {
+      element.nextElementSibling.classList.toggle("hidden");
+      if (element.nextElementSibling.classList.contains('hidden')) {
+        element.querySelector(".spoiler_button").innerHTML = `
+          <i class="fa-solid fa-chevron-down" title="Скрыть/открыть блок"></i>
+        `;
+      } else {
+          element.querySelector(".spoiler_button").innerHTML = `
+          <i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i>
+        `;
+      }
+    })
+  })
+
 // Добавить зал
 
 formAddHall.addEventListener("submit", (e) => {
@@ -65,7 +83,7 @@ function addHall(inputAddHall) {
         console.log(data);  
         hallsList.insertAdjacentHTML("beforeend", `
         <li class="halls-list__item">
-          <span class="halls-list__item-name" data-id="${data.result.halls.id}">${inputAddHall.value}</span> <span class="admin__button-remove halls-remove"></span>
+          <span class="halls-list__item-name" data-id="${data.result.halls.id}">${inputAddHall.value}</span> <button class="admin__button-remove halls-remove"><i class="fa-solid fa-trash" title="Удалить зал"></i></button>
         </li>
         `);
 
@@ -98,7 +116,7 @@ function manageHalls(data) {
 
     hallsList.insertAdjacentHTML("beforeend", `
       <li class="halls-list__item">
-        <span class="halls-list__item-name" data-id="${data.result.halls[i].id}">${data.result.halls[i].hall_name}</span> <span class="admin__button-remove halls-remove"></span>
+        <span class="halls-list__item-name" data-id="${data.result.halls[i].id}">${data.result.halls[i].hall_name}</span> <button class="admin__button-remove halls-remove"><i class="fa-solid fa-trash" title="Удалить зал"></i></button>
       </li>
     `);
 
@@ -110,7 +128,7 @@ function manageHalls(data) {
 
 // Удалить зал
 
-hallRemoveButton = document.querySelectorAll(".halls_remove");
+hallRemoveButton = document.querySelectorAll(".halls-remove");
 
 hallRemoveButton.forEach(item => {
   item.addEventListener("click", (e) => {

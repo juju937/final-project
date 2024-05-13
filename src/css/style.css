@@ -400,11 +400,30 @@ a {
 .admin__section::before {
   content: '';
   width: 2px;
+  height: 100%;
+  background-color: #BC95D6;
+  position: absolute;
+  left: 60px;
+}
+
+.admin__section:first-of-type::before {
+  content: '';
+  width: 2px;
   height: calc(100% - 30px);
   background-color: #BC95D6;
   position: absolute;
   left: 60px;
   top: 30px;
+}
+
+.admin__section:last-of-type::before {
+  content: '';
+  width: 2px;
+  height: 30px;
+  background-color: #BC95D6;
+  position: absolute;
+  left: 60px;
+  top: 0;
 }
 
 .admin__section-header {
@@ -526,7 +545,7 @@ a {
   cursor: pointer;
 }
 
-.popup__form.add-hall {
+.popup__form {
   width: 750px;
   margin: 0 auto;
   padding: 35px 0;
@@ -540,7 +559,7 @@ a {
   line-height: 14px;
 }
 
-.popup_input.add-hall-input {
+.popup_input {
   width: 100%;
   height: 35px;
   font-size: 16px;
@@ -552,7 +571,9 @@ a {
 
 .popup__buttons {
   margin-top: 40px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 .popup__button_cancel {

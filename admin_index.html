@@ -27,7 +27,7 @@
           <h2 class="section-header-text">
             Управление залами
           </h2>
-          <i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i>
+          <span class="spoiler_button"><i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i></span>
         </div>
 
         <div class="conf-step__wrapper">
@@ -45,9 +45,68 @@
         </div>
       </section>
 
+      <section class="admin__section halls">
+        <div class="admin__section-header">
+          <h2 class="section-header-text">
+            Конфигурация залов
+          </h2>
+          <span class="spoiler_button"><i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i></span>
+        </div>
+
+        <div class="conf-step__wrapper">
+          <span class="conf-step__wrapper-text">Выберите зал для конфигурации:</span>
+          
+        </div>
+        
+      </section>
+
+      <section class="admin__section halls">
+        <div class="admin__section-header">
+          <h2 class="section-header-text">
+            Конфигурация цен
+          </h2>
+          <span class="spoiler_button"><i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i></span>
+        </div>
+
+        <div class="conf-step__wrapper">
+          <span class="conf-step__wrapper-text">Выберите зал для конфигурации:</span>
+          
+        </div>
+        
+      </section>
+
+      <section class="admin__section halls">
+        <div class="admin__section-header">
+          <h2 class="section-header-text">
+            Сетка сеансов
+          </h2>
+          <span class="spoiler_button"><i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i></span>
+        </div>
+
+        
+        
+      </section>
+
+      <section class="admin__section halls">
+        <div class="admin__section-header">
+          <h2 class="section-header-text">
+            Открыть продажи
+          </h2>
+          <span class="spoiler_button"><i class="fa-solid fa-chevron-up" title="Скрыть/открыть блок"></i></span>
+        </div>
+
+        <div class="conf-step__wrapper">
+          <span class="conf-step__wrapper-text">Выберите зал для открытия/закрытия продаж:</span>
+          
+        </div>
+        
+      </section>
+
     </main>
 
   </div>
+
+  <!------------------------------------------------------ POPUP WINDOWS ------------------------------------------------------>
 
   <div class="popup__window popup__manage-halls admin-container container hidden">
     <div class="popup-content add-hall">
@@ -66,6 +125,91 @@
 
         <div class="popup__buttons">
           <button class="popup__button_save popup__add-hall_button_add button" type="submit">Добавить зал</button>
+          <button class="popup__button_cancel popup__add-hall_button_cancel button" type="reset">Отменить</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="popup__window popup__manage-movies admin-container container hidden">
+    <div class="popup-content add-movie">
+      <div class="popup__header">
+        <h2 class="popup__header-text">Добавление фильма</h2>
+        <div class="popup__close">
+          <i class="fa-solid fa-xmark" title="Закрыть"></i>
+        </div>
+      </div>
+
+      <form class="popup__form add-movie">
+        <label class="admin_label add-movie_label">
+          <span class="popup__form-legend">Название фильма</span>
+          <input class="popup_input add-movie-input movie-name" type="text" placeholder="Например, «Гражданин Кейн»" required>
+        </label>
+
+        <label class="admin_label add-movie_label">
+          <span class="popup__form-legend">Продолжительность фильма (мин.)</span>
+          <input class="popup_input add-movie-input movie-length" type="number" required>
+        </label>
+
+        <label class="admin_label add-movie_label">
+          <span class="popup__form-legend">Описание фильма</span>
+          <textarea class="popup_input add-movie-input movie-synopsis" required>
+        </label>
+
+        <label class="admin_label add-movie_label">
+          <span class="popup__form-legend">Страна</span>
+          <input class="popup_input add-movie-input movie-origin" type="text" required>
+        </label>
+
+        <div class="popup__buttons">
+          <button class="popup__button_save popup__add-movie_button_add button" type="submit">Добавить фильм</button>
+          <label class="popup__button_save popup__add-poster_button button">
+            Загрузить постер
+            <input type="file" name="file" accept=".jpg" class="input_add_poster">
+          </label>
+          <button class="popup__button_cancel popup__add-movie_button_cancel button" type="reset">Отменить</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="popup__window popup__manage-seances admin-container container hidden">
+    <div class="popup-content add-seance">
+      <div class="popup__header">
+        <h2 class="popup__header-text">Добавление сеанса</h2>
+        <div class="popup__close">
+          <i class="fa-solid fa-xmark" title="Закрыть"></i>
+        </div>
+      </div>
+
+      <form class="popup__form add-seance">
+        <label class="admin_label add-seance_label">
+          <span class="popup__form-legend">Название зала</span>
+          <select class="select__add-seance select__add-seance_hall">
+            <!-- <option class="option_add-seance hall__name">Название зала</option> -->
+            <!-- <option class="option_add-seance hall__name" data-id="58">Зал 1</option>
+            <option class="option_add-seance hall__name" data-id="78">Зал 2</option> -->
+          </select>
+        </label>
+
+        <label class="admin_label add-seance_label">
+          <span class="popup__form-legend">Название фильма</span>
+          <select class="select__add-seance select__add-seance_movie">
+            <!-- <option class="option_add-seance movie__name">Название фильма</option> -->
+            <!-- <option class="option_add-seance movie__name" data-id="141">Звёздные войны XXIII: Атака клонированных клонов</option>
+            <option class="option_add-seance movie__name" data-id="142">Миссия выполнима</option> -->
+          </select>
+        </label>
+
+        <label class="admin_label add-seance_label">
+          <span class="popup__form-legend">Время начала</span>
+          <input type="time" class="popup_input add-seans__input_time" value="00:00" required>
+        </label>
+
+        <div class="popup__buttons">
+          <button class="popup__button_save popup__add-hall_button_add button" type="submit">Добавить сеанс</button>
           <button class="popup__button_cancel popup__add-hall_button_cancel button" type="reset">Отменить</button>
         </div>
 
