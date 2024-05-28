@@ -8,7 +8,7 @@ const movieTitle = document.querySelector(".buying__info_title");
 const seanceStartTime = document.querySelector(".buying__info-time");
 const hallName = document.querySelector(".buying__info_hall");
 
-const scheme = document.querySelector(".buying__scheme_places");
+const scheme = document.querySelector(".buying__scheme_seats");
 let hallSchemeRows;
 let hallChairs;
 
@@ -23,25 +23,7 @@ let coast;
 
 const buyingButton = document.querySelector(".buying__button");
 
-// Увеличение экрана при двойном тапе на мобильных устройствах
-
-body.addEventListener("dblclick", () => {
-  if((Number(body.getBoundingClientRect().width)) < 1200) {
-    if(body.getAttribute("transformed") === "false" || !body.hasAttribute("transformed")) {
-      body.style.zoom = "1.5";
-      body.style.transform = "scale(1.5)";
-      body.style.transformOrigin = "0 0";
-      body.setAttribute("transformed", "true")
-    } else if(body.getAttribute("transformed") === "true") {
-      body.style.zoom = "1";
-      body.style.transform = "scale(1)";
-      body.style.transformOrigin = "0 0";
-      body.setAttribute("transformed", "false");
-    }
-  }
-})
-
-// Отображение данных о фильме, сеансе и зале
+// данные о фильме, сеансе и зале
 
 function setInfo(data) {
   let seanceIndex = data.result.seances.findIndex(item => item.id === Number(seanceId));
@@ -59,7 +41,7 @@ function setInfo(data) {
   priceVip = data.result.halls[hallIndex].hall_price_vip;
 }
 
-// Отображение данных о схеме зала
+// данные о схеме зала
 
 function showHallScheme(data) {
   let hallConfig = data.result;
@@ -92,83 +74,7 @@ function showHallScheme(data) {
 
 }
 
-// Выбор мест
-
-function choosePlaces(hallSchemeRows) {
-  let hallChooseRows = Array.from(hallSchemeRows);
-  hallChooseRows.forEach(row => {
-    let hallChoosePlaces = Array.from(row.children);
-    hallChoosePlaces.forEach(place => {   
-      if(place.dataset.type !== "disabled" && place.dataset.type !== "taken") {
-        place.addEventListener("click", () => {
-          place.classList.toggle("chair_selected");
-
-          selectedPlaces = document.querySelectorAll(".chair_selected:not(.buying__scheme_legend-chair)");
-
-          // Активация кнопки "Забронировать"
-
-          if (selectedPlaces.length === 0) {
-            buyingButton.classList.add("buying__button_disabled");
-          } else {
-            buyingButton.classList.remove("buying__button_disabled");
-          }
-        })
-
-      }
-    })
-  })  
-}
-
-// Клик по кнопке "Забронировать"
-
-function clickButton() {
-  buyingButton.addEventListener("click", event => {
-    event.preventDefault();
-
-    if(buyingButton.classList.contains("buying__button_disabled")) {
-      return;
-    } else {
-
-      let hallChosenRows = Array.from(document.querySelectorAll(".buying__scheme_row"));
-
-      tickets = [];
-
-      hallChosenRows.forEach(row => {
-        let rowIndex = hallChosenRows.findIndex(currentRow => currentRow === row);
-       
-        let hallChosenPlaces = Array.from(row.children);
-
-        hallChosenPlaces.forEach(place => {
-          let placeIndex = hallChosenPlaces.findIndex(currentPlace => currentPlace === place);
-
-          if(place.classList.contains("chair_selected")) {
-            if(place.dataset.type === "standart") {
-              coast = priceStandart;
-            } else if(place.dataset.type === "vip") {
-              coast = priceVip;
-            }
-
-            tickets.push({
-              row: rowIndex + 1,
-              place: placeIndex + 1,
-              coast: coast,
-            })
-          }
-
-        })
-      })
-
-      localStorage.setItem("tickets", JSON.stringify(tickets));
-
-      document.location="./payment.html";
-    }
-
-  })
-
-}
-
-
-// Получение общих данные с сервера
+// получение данные с сервера
 
 fetch("https://shfe-diplom.neto-server.ru/alldata")
   .then(response => response.json())
@@ -176,7 +82,7 @@ fetch("https://shfe-diplom.neto-server.ru/alldata")
     console.log(data);
     setInfo(data);
 
-    // Получение данных о схеме зала
+    // получение данных о схеме зала
 
     fetch(`https://shfe-diplom.neto-server.ru/hallconfig?seanceId=${seanceId}&date=${chosenDate}`)
     .then(response => response.json())

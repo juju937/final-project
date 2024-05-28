@@ -37,7 +37,7 @@ let movieSeancesList;
 
 // --------------------------------------------------------------- PAGE NAV & CALENDAR ---------------------------------
 
-// Установка даты и дня недели сегодняшнего дня
+// сегодняшний день
 
 function setToday(currentDay) {
   todayWeekDay = weekDays[currentDay.getDay()];
@@ -54,7 +54,7 @@ function setToday(currentDay) {
   }
 }
 
-// Установка дат и дней недели на остальные дни
+// остальные дни
 
 function setDays() {
   navDays.forEach((day, i) => {
@@ -73,7 +73,7 @@ function setDays() {
   });
 }
 
-// Смена дней недели и дат
+// смена дат
 
 function changeDays(daysCount) {
   navDays.forEach((day, i) => {
@@ -92,8 +92,6 @@ function changeDays(daysCount) {
   });
 }
 
-// Преобразование выбранной даты для параметров
-
 function getDay(selectedDate, selectedMonth, selectedYear) {
   if(selectedDate < 10) {
     gottenDate = `0${selectedDate}`;
@@ -110,13 +108,11 @@ function getDay(selectedDate, selectedMonth, selectedYear) {
   date = `${selectedYear}-${gottenMonth}-${gottenDate}`;
 }
 
-// Сортировка списка дней (избавление от кнопок со стрелками)
-
 function sortDays(navDays) {
   navDaysSorted = navDays.filter(item => !item.classList.contains("nav__arrow"));
 }
 
-// Выделение сегодняшнего дня
+// выбор сегодняшнего дня
 
 navToday.classList.add("nav__day-chosen");
 navToday.style.cursor = "default";
@@ -136,7 +132,7 @@ setDays();
 sortDays(navDays);
 markPastSeances();
 
-// При нажатии на правую стрелку
+// нажатие на правую стрелку
 
 navNextDates.addEventListener("click", () => {
   daysCount++;
@@ -153,7 +149,7 @@ navNextDates.addEventListener("click", () => {
   sortDays(navDays);
 })
 
-// При нажатии на левую стрелку
+// нажатие на левую стрелку
 
 navToday.addEventListener("click", () => {
   if(navToday.classList.contains("nav__arrow")) {
@@ -198,7 +194,7 @@ navToday.addEventListener("click", () => {
   
 })
 
-// Выбор дня
+// нажатие на день
 
 navDaysSorted.forEach(day => {
   day.addEventListener("click", () => {
@@ -228,7 +224,7 @@ navDaysSorted.forEach(day => {
 
 // --------------------------------------------------------------- MOVIE LIST & API ---------------------------------
 
-// Формирование списка фильмов и сеансов по ним
+// список фильмов и сеансов
 
 let dataFilms;
 let dataSeances;
@@ -247,14 +243,10 @@ function getMovies(data) {
 
     dataHalls.forEach(hall => {
 
-      //Фильтрация по сеансам в холлах, где показывается фильм
-
       currentSeances = dataSeances.filter(seance => (
         (Number(seance.seance_hallid) === Number(hall.id)) && 
         (Number(seance.seance_filmid) === Number(film.id))
       ));
-
-      // Сортировка полученного массива по времени сеансов
 
       currentSeances.sort(function(a, b) {
         if ((a.seance_time.slice(0,2) - b.seance_time.slice(0,2)) < 0) {
@@ -266,15 +258,12 @@ function getMovies(data) {
 
       if (currentSeances.length > 0) {
 
-        // Формирование названия зала и списка для сеансов
-
         hallsSeances += `
         <div class="movie-seances__box"><h3 class="movie-seances__hall" data-hall__id="${hall.id}">${hall.hall_name}</h3>
         <ul class="movie-seances__list">
         `;
 
         currentSeances.forEach(seance => {
-          // Формирование сеансов для нужного зала
 
           hallsSeances += `
           <li class="movie-seances__time" data-seance__id="${seance.id}" data-hall__id="${hall.id}" data-film__id="${film.id}">
@@ -288,7 +277,6 @@ function getMovies(data) {
     });
   
     if (hallsSeances) {
-      // Формирование блока с фильмом
 
       main.insertAdjacentHTML("beforeend", `
         <section class="movie" data-film__id="${film.id}">
@@ -319,7 +307,7 @@ function getMovies(data) {
   clickSeance();
 }
 
-// Запрос данных с сервера
+// запрос данных с сервера
 
 fetch("https://shfe-diplom.neto-server.ru/alldata")
   .then(response => response.json())
@@ -328,12 +316,10 @@ fetch("https://shfe-diplom.neto-server.ru/alldata")
     getMovies(data);
   })
 
-// Отмечание прошедших сеансов неактивными
 
+// отмечание прошедших сеансов неактивными
 
 function markPastSeances() {
-
-  // Получение текущего времени (часы:минуты)
 
   const currentHours = currentDay.getHours();
   const currentMinutes = currentDay.getMinutes();
@@ -362,7 +348,7 @@ function markPastSeances() {
   })
 }
 
-// Переход в зал выбранного сеанса
+// переход в зал
 
 let seanceId;
 

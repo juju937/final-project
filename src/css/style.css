@@ -284,11 +284,69 @@ a {
 
 /*--------------------------------- HALL VIEW PAGE -----------------------------------*/
 
-.hall_view {
+.buying {
   padding: 0;
   width: 100%;
   background-color: rgba(241, 235, 230, 0.95);
   border-radius: 2px;
+  text-align: center;
+}
+
+.buying__info {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buying__info_movie {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.buying__info_title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.buying__info_start {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.buying__info_hall {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.buying__info_hint {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.buying__info_pic {
+  width: 24px;
+}
+
+.buying__info_hint-text {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+  width: 67px;
+}
+
+.buying__button {
+  padding: 12px 56px;
+  margin: 30px auto;
+}
+
+.buying__scheme {
+  background-color: #171D24;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 /*--------------------------------- ADMIN LOGIN -----------------------------------*/
