@@ -211,11 +211,12 @@ a {
   height: 14px;
   background-color: #393939;
   position: absolute;
-  margin-left: 1px;
+  top: 0;
+  right: -7px;
 }
 
 .movie__poster_img {
-  min-width: 100%;
+  max-width: 125px;
   height: 100%;
   object-fit: cover;
 }
@@ -484,7 +485,7 @@ a {
   top: 0;
 }
 
-.admin__section-header {
+.admin__header {
   width: 100%;
   height: 95px;
   background-color: #63536C;
@@ -496,19 +497,23 @@ a {
   padding: 0 42px 0 104px;
 }
 
-.admin__section-header i {
+.admin__header i {
   font-size: 22px;
   cursor: pointer;
 }
 
-.section-header-text {
+.admin__header_arrow-hide {
+  transform: rotate(180deg);
+}
+
+.admin__header_text {
   font-size: 22px;
   font-weight: 700;
   line-height: 25px;
   position: relative;
 }
 
-.section-header-text::before {
+.admin__header_text::before {
   content: '';
   width: 44px;
   height: 44px;
@@ -520,19 +525,19 @@ a {
   left: -65px;
 }
 
-.conf-step__wrapper {
-  padding: 35px 104px;
+.admin__wrapper {
+  padding: 35px 35px 35px 104px;
 }
 
-.conf-step__wrapper-text {
+.admin__info {
   font-size: 16px;
   font-weight: 400;
   line-height: 18px;
 }
 
-.wrapper__halls-list {
+.halls__list {
   margin: 15px 0;
-  padding: 0 25px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -540,33 +545,406 @@ a {
   font-weight: 400;
 }
 
-.halls-list__item {
-  list-style-type: '— ';
+.halls__list_item {
+  display: flex;
+  gap: 5px;
 }
 
-.admin__button-remove {
+.halls__list_item::before {
+  content: '—';
+  margin-right: 5px;
+}
+
+.admin__button_remove {
   width: 20px;
   height: 20px;
   border-radius: 3px;
   box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12), 0px 2px 2px 0px rgba(0,0,0,0.24);
   border: none;
   background-color: #fff;
-  text-align: center;
   cursor: pointer;
   transition: .5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.admin__button-remove:hover {
+.admin__button_remove::before {
+  content: '\f1f8';
+  font-family: "Font Awesome 6 Free";
+  font-size: 12px;
+}
+
+.admin__button_remove:hover {
   opacity: 0.6;
 }
 
-.admin__button-hall {
+.admin__button_hall {
   padding: 12px 30px;
+}
+
+.halls_choose {
+  display: flex;
+  margin: 10px 0 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hall__item {
+  padding: 13px 30px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.12), 0px 2px 2px 0px rgba(0,0,0,0.24);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hall_item-selected {
+  background-color: #fff;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.hall-config__size {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 10px 0 30px;
+  color: #848484;
+}
+
+.admin_label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.hall-size {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+.admin_input {
+  width: 100px;
+  height: 36px;
+  font-size: 16px;
+  color: #757575;
+  padding: 0 7px;
+  background-color: #fff;
+  border: 1px solid #B7B7B7;
+}
+
+.admin_input:focus {
+  color: #000;
+}
+
+.hall-config__types {
+  display: flex;
+  margin: 10px 0;
+  gap: 20px;
+  font-size: 14px;
+  color: #848484;
+}
+
+.hall-config__type_place {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.place_standart {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  gap: 0px;
+  border-radius: 4px;
+  border: 1px solid #393939;
+  background-color: #C4C4C4;
+}
+
+.place_vip {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  gap: 0px;
+  border-radius: 4px;
+  border: 1px solid #0A828A;
+  background-color: #B0D6D8;
+  background-image: url(../images/vip-seat-bckg.png);
+}
+
+.place_block {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  gap: 0px;
+  border-radius: 4px;
+  border: 1px solid #C4C4C4;
+}
+
+.hall-config__hint {
+  font-size: 14px;
+  color: #848484;
+}
+
+.hall-config__hall {
+  margin: 10px 0 25px;
+  border: 1px solid #000000;
+  text-align: center;
+  padding: 0 0 30px 0;
+}
+
+.hall-config__hall_screen {
+  padding: 20px 0 15px 18px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 19px;
+}
+
+.hall-config__hall_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.hall-config__hall_chair {
+  margin-right: 10px;
+}
+
+.hall-config__hall_chair:last-of-type {
+  margin-right: 0;
+}
+
+.hall-config__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.admin__button_cancel {
+  background-color: #fff;
+  color: #63536C;
+  padding: 12px 30px;
+}
+
+.admin__button_cancel:hover {
+  color: #fff;
+  background-color: #63536C;
+}
+
+.admin__button_save {
+  padding: 12px 30px;
+}
+
+.button_disabled {
+  background-color: #C4C4C4;
+  color: #848484;
+}
+
+.button_disabled:hover {
+  cursor: default;
+  background-color: #C4C4C4;
+  color: #848484;
+}
+
+.price-config__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0 20px;
+  color: #848484;
+
+}
+
+.price-config__legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.price-config__legend_text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.price-config__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.admin__button_movie {
+  padding: 12px 30px;
+}
+
+.movie-seances__wrapper {
+  margin-top: 36px;
+  margin-bottom: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.movie-seances__movie {
+  width: 260px;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.30);
+  display: flex;
+  position: relative;
+  align-items: center;
+  cursor: move;
+}
+
+.movie-seances__movie_poster {
+  width: 38px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.movie-seances__movie_info {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.movie_info-title {
+  font-weight: 500;
+}
+
+.movie_info-length {
+  font-weight: 400;
+  margin-top: 4px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.movie-seances__movie_delete {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+}
+
+.background_1 {
+  background-color: #CAFF85;
+}
+
+.background_2 {
+  background-color: #85FF89;
+}
+
+.background_3 {
+  background-color: #85FFD3;
+}
+
+.background_4 {
+  background-color: #85E2FF;
+}
+
+.background_5 {
+  background-color: #8599FF;
+}
+
+.movie-seances__timelines {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  max-width: 86%;
+  margin-left: 40px;
+}
+
+.movie-seances__timeline {
+  position: relative;
+}
+
+.timeline__delete {
+  position: absolute;
+  left: -30px;
+  top: 30px;
+}
+
+.timeline__delete_image {
+  width: 30px;
+}
+
+.timeline__hall_title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.timeline__seances {
+  border: 1px solid #848484;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  min-width: 328px;
+  height: 60px;
+  display: flex;
+  position: relative;
+}
+
+.timeline__seances_movie {
+  display: flex;
+  flex-wrap: wrap;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.30);
+  position: absolute;
+  cursor: move;
+}
+
+.timeline__seances_movie::before {
+  content: "";
+  width: 1px;
+  height: 5px;
+  background-color: #848484;
+  position: absolute;
+  left: -1px;
+  bottom: -15px;
+}
+
+.timeline__seances_title {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 10px;
+  word-wrap: break-word;
+  height: 20px;
+  overflow: hidden;
+}
+
+.timeline__movie_start {
+  color: #848484;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  position: absolute;
+  left: -15px;
+  bottom: -30px;
+}
+
+.movie-seances__buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.open__wrapper {
+  text-align: center;
+}
+
+.open__info {
+  margin-bottom: 30px;
 }
 
 /*--------------------------------- POPUP WINDOWS -----------------------------------*/
 
-.popup__window {
+.popup {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -579,7 +957,7 @@ a {
   align-items: center;
 }
 
-.popup-content {
+.popup__container {
   width: 960px;
   background-color: rgba(234, 233, 235, 0.95);
 }
@@ -599,32 +977,63 @@ a {
 }
 
 .popup__header i {
-  font-size: 22px;
+  font-size: 28px;
   cursor: pointer;
+}
+
+.add-hall_label {
+  color: #848484;
+}
+
+.add-movie_label, .add-seance_label {
+  color: #848484;
+  margin-bottom: 10px;
+}
+
+.add-hall_input, .add-movie_name_input, .add-movie_time_input, .add-movie_synopsis_input, .add-movie_country_input {
+  width: 100%;
+}
+
+.add-movie_synopsis_input {
+  height: 80px;
+  overflow-y: scroll;
+}
+
+.input_add_poster {
+  visibility: hidden;
+}
+
+.popup__add-poster_button {
+  max-width: 200px;
+}
+
+.select__add-seance {
+  height: 36px;
+  font-size: 16px;
+  padding: 0 7px;
+  background-color: #fff;
+  border: 1px solid #B7B7B7;
+  appearance: none;
+  border-radius: 0;
+  background-image: url(../images/chevron-down-solid.svg);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.add-seans__input_time {
+  width: 100%;
+  color: #000;
+  background-image: url(../images/clock-regular.svg);
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
 }
 
 .popup__form {
   width: 750px;
   margin: 0 auto;
   padding: 35px 0;
-}
-
-.popup__form-legend {
-  display: block;
-  color: #848484;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 14px;
-}
-
-.popup_input {
-  width: 100%;
-  height: 35px;
-  font-size: 16px;
-  font-weight: 400;
-  padding: 0 7px;
-  border-radius: 1px;
-  border: 1px solid #B7B7B7;
 }
 
 .popup__buttons {
@@ -646,6 +1055,11 @@ a {
 
 .popup__button_save, .popup__button_cancel {
   padding: 12px 30px;
+}
+
+.remove-seance_buttons {
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
 .hidden {
