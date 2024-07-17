@@ -160,7 +160,7 @@ function clickButton() {
 
       localStorage.setItem("tickets", JSON.stringify(tickets));
 
-      document.location="./payment.html";
+      window.location.href="./payment.html";
     }
 
   })

@@ -1,10 +1,3 @@
-const loginButton = document.querySelector(".login__button");
-
-loginButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  window.location.href="../admin_login.html";
-})
-
 const navDays = Array.from(document.querySelectorAll(".page-nav__day"));
 const navToday = document.querySelector(".nav__day_current");
 const navNextDates = document.querySelector(".right");
@@ -243,10 +236,12 @@ function getMovies(data) {
 
     dataHalls.forEach(hall => {
 
+
       currentSeances = dataSeances.filter(seance => (
         (Number(seance.seance_hallid) === Number(hall.id)) && 
         (Number(seance.seance_filmid) === Number(film.id))
       ));
+
 
       currentSeances.sort(function(a, b) {
         if ((a.seance_time.slice(0,2) - b.seance_time.slice(0,2)) < 0) {
@@ -258,31 +253,32 @@ function getMovies(data) {
 
       if (currentSeances.length > 0) {
 
+
         hallsSeances += `
-        <div class="movie-seances__box"><h3 class="movie-seances__hall" data-hall__id="${hall.id}">${hall.hall_name}</h3>
+        <h3 class="movie-seances__hall" data-hallid="${hall.id}">${hall.hall_name}</h3>
         <ul class="movie-seances__list">
         `;
 
         currentSeances.forEach(seance => {
 
           hallsSeances += `
-          <li class="movie-seances__time" data-seance__id="${seance.id}" data-hall__id="${hall.id}" data-film__id="${film.id}">
+          <li class="movie-seances__time" data-seanceid="${seance.id}" data-hallid="${hall.id}" data-filmid="${film.id}">
             ${seance.seance_time}
           </li>
           `;
         });
         
-        hallsSeances += `</ul></div>`;
+        hallsSeances += `</ul>`;
       };
     });
   
     if (hallsSeances) {
 
       main.insertAdjacentHTML("beforeend", `
-        <section class="movie" data-film__id="${film.id}">
+        <section class="movie" data-filmid="${film.id}">
           <div class="movie__info">
             <div class="movie__poster">
-              <img class="movie__poster_img" src="${film.film_poster}" alt="Постер к фильму ${film.film_name}">
+              <img src="${film.film_poster}" alt="Постер фильма ${film.film_name}" class="movie__poster_image">
             </div>
             <div class="movie__description">
               <h2 class="movie__title">${film.film_name}</h2>
@@ -307,7 +303,7 @@ function getMovies(data) {
   clickSeance();
 }
 
-// запрос данных с сервера
+// получаем данные с сервера
 
 fetch("https://shfe-diplom.neto-server.ru/alldata")
   .then(response => response.json())
@@ -316,8 +312,8 @@ fetch("https://shfe-diplom.neto-server.ru/alldata")
     getMovies(data);
   })
 
+// отмечаем прошедшие сеансы как неактивные
 
-// отмечание прошедших сеансов неактивными
 
 function markPastSeances() {
 
@@ -361,11 +357,7 @@ function clickSeance() {
         seanceId = seance.dataset.seanceid;
         localStorage.setItem("seanceId", seanceId);
 
-        window.location.href="../hall.html"
-      })
-    } else {
-      seance.addEventListener('click', (e) => {
-      e.preventDefault();
+        window.location.href="./hall.html";
       })
     }
   })
