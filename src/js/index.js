@@ -357,7 +357,7 @@ function clickSeance() {
         seanceId = seance.dataset.seanceid;
         localStorage.setItem("seanceId", seanceId);
 
-        window.location.href="./final-project/hall.html";
+        window.location.href="./hall.html";
       })
     }
   })

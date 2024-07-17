@@ -66,7 +66,7 @@ ticketButton.addEventListener("click", event => {
         
         if(data.success === true) { 
           localStorage.setItem("ticketsInfo", JSON.stringify(data));
-          window.location.href="./final-project/ticket.html";
+          window.location.href="./ticket.html";
         } else {
           alert("Места недоступны для бронирования!");
           return;
