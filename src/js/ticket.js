@@ -16,7 +16,7 @@ let places = [];
 let coast = [];
 let finalSumm;
 
-// Отображение данных о билете
+// данные о билете
 
 function getInfo(data) {
   let seanceIndex = data.result.seances.findIndex(item => item.id === Number(seanceId));
@@ -37,7 +37,7 @@ function getInfo(data) {
 
   finalSumm = coast.reduce((acc, price) => acc + price, 0);
 
-  // Создание QR-кода с информацией по билетам
+  // QR-код
 
   textQr = `
     Дата: ${checkedDate}, 
@@ -64,7 +64,7 @@ function getInfo(data) {
   localStorage.clear();
 }
 
-// Запрос к серверу (информация по фильму, залу и сеансу)
+// данные с сервера
 
 fetch("https://shfe-diplom.neto-server.ru/alldata")
   .then(response => response.json())

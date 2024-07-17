@@ -14,7 +14,7 @@ let finalSumm;
 
 const ticketButton = document.querySelector(".ticket__button");
 
-// Отображение данных о билете
+// инфо о билете
 
 function getInfo(data) {
   let seanceIndex = data.result.seances.findIndex(item => item.id === Number(seanceId));
@@ -37,7 +37,7 @@ function getInfo(data) {
   priceInfo.textContent = finalSumm;
 }
 
-// Запрос к серверу (информация по фильму, залу и сеансу)
+// данные с сервера
 
 fetch("https://shfe-diplom.neto-server.ru/alldata")
   .then(response => response.json())
@@ -46,7 +46,7 @@ fetch("https://shfe-diplom.neto-server.ru/alldata")
     getInfo(data);
   })
 
-// Клик по кнопке "Получить код бронирования"
+// кнопка "Получить код бронирования"
 
 ticketButton.addEventListener("click", event => {
   event.preventDefault();

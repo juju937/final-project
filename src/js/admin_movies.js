@@ -1,14 +1,12 @@
-// Добавление фильма
+// добавить фильм
 const addMovieButton = document.querySelector(".admin__button_movie");
 const movieSeancesWrapper = document.querySelector(".movie-seances__wrapper");
 
-// Открытие popup "Добавить фильм"
+// popup "Добавить фильм"
 
 addMovieButton.addEventListener("click", () => {
   popupMovieAdd.classList.remove("hidden");
 })
-
-// popup Добавление фильма
 
 const popupMovieAdd = document.querySelector(".popup__movie_add");
 const formAddMovie = document.querySelector(".popup__form_add-movie");
@@ -20,8 +18,6 @@ const inputMovieCountry = document.querySelector(".add-movie_country_input");
 const buttonPosterAdd = document.querySelector(".input_add_poster");
 
 let posterFile;
-
-// Добавление фильма
 
 function addMovie(posterFile) {
   const formData = new FormData();
@@ -45,7 +41,7 @@ function addMovie(posterFile) {
     })
 }
 
-// Удаление фильма
+// удалить фильм
 
 function deleteMovie(movieId) {
   fetch(`https://shfe-diplom.neto-server.ru/film/${movieId}`, {
@@ -59,7 +55,7 @@ function deleteMovie(movieId) {
   })
 }
 
-// Загрузить постер
+// загрузить постер
 
 buttonPosterAdd.addEventListener("change", event => {
   event.preventDefault();
@@ -72,7 +68,7 @@ buttonPosterAdd.addEventListener("change", event => {
   }
 })
 
-// Добавить фильм
+// добавить фильм
 
 formAddMovie.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -84,7 +80,7 @@ formAddMovie.addEventListener("submit", (e) => {
   }
 })
 
-// Удалить фильм
+// удалить фильм
 
 let movieId;
 
@@ -97,7 +93,7 @@ movieSeancesWrapper.addEventListener("click", (e) => {
   }
 }) 
 
-// Отображение фильмов
+// отображение фильмов
 
 function moviesOperations(data) {
   let movieCount = 1;

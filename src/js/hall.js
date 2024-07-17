@@ -74,7 +74,7 @@ function showHallScheme(data) {
 
 }
 
-// Увеличение экрана при двойном тапе на мобильных устройствах
+// обработка double tap на мобильных устройствах
 
 body.addEventListener("dblclick", () => {
   if((Number(body.getBoundingClientRect().width)) < 1200) {
@@ -92,7 +92,7 @@ body.addEventListener("dblclick", () => {
   }
 })
 
-// Выбор мест
+// выбор мест
 
 function choosePlaces(hallSchemeRows) {
   let hallChooseRows = Array.from(hallSchemeRows);
@@ -105,7 +105,7 @@ function choosePlaces(hallSchemeRows) {
 
           selectedPlaces = document.querySelectorAll(".chair_selected:not(.buying__scheme_legend-chair)");
 
-          // Активация кнопки "Забронировать"
+          // активность кнопки "Забронировать"
 
           if (selectedPlaces.length === 0) {
             buyingButton.classList.add("buying__button_disabled");
@@ -119,7 +119,7 @@ function choosePlaces(hallSchemeRows) {
   })  
 }
 
-// Клик по кнопке "Забронировать"
+// обработка кнопки "Забронировать"
 
 function clickButton() {
   buyingButton.addEventListener("click", event => {
