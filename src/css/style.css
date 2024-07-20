@@ -1282,6 +1282,7 @@ a {
   .ticket__button {
     display: flex;
     align-items: center;
+    margin: 0 auto;
   }
 
   .admin__autorize {
