@@ -1,5 +1,5 @@
 const seanceId = Number(localStorage.getItem("seanceId"));
-const checkedDate = localStorage.getItem("checkedDate");
+const chosenDate = localStorage.getItem("chosenDate");
 const tickets = JSON.parse(localStorage.getItem("tickets"));
 
 const movieInfo = document.querySelector(".ticket__info-movie");
@@ -53,7 +53,7 @@ ticketButton.addEventListener("click", event => {
 
   const params = new FormData();
     params.set("seanceId", seanceId);
-    params.set("ticketDate", checkedDate);
+    params.set("ticketDate", chosenDate);
     params.set("tickets", JSON.stringify(tickets));
   
     fetch("https://shfe-diplom.neto-server.ru/ticket", {

@@ -1,4 +1,4 @@
-const loginForm = document.querySelector(".admin__login-form");
+const loginForm = document.querySelector(".button-autorize");
 const email = document.getElementById('login_email')
 const password = document.getElementById('login_password')
 

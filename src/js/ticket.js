@@ -1,5 +1,5 @@
 const seanceId = Number(localStorage.getItem("seanceId"));
-const checkedDate = localStorage.getItem("checkedDate");
+const chosenDate = localStorage.getItem("chosenDate");
 const tickets = JSON.parse(localStorage.getItem("tickets"));
 const ticketsInfo = JSON.parse(localStorage.getItem("ticketsInfo"));
 
@@ -40,7 +40,7 @@ function getInfo(data) {
   // QR-код
 
   textQr = `
-    Дата: ${checkedDate}, 
+    Дата: ${chosenDate}, 
     Время: ${timeInfo.textContent}, 
     Название фильма: ${movieInfo.textContent}, 
     Зал: ${hallInfo.textContent}, 
