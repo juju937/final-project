@@ -303,14 +303,17 @@ function getMovies(data) {
   clickSeance();
 }
 
-// получаем данные с сервера
+// данные с сервера
+(async function() {
+  const apiService = new ApiService;
 
-fetch("https://shfe-diplom.neto-server.ru/alldata")
-  .then(response => response.json())
-  .then(function(data) {
-    console.log(data);
-    getMovies(data);
-  })
+  try {
+      const data = await apiService.getAllData();
+      getMovies(data);
+  } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+  }
+})();
 
 // отмечаем прошедшие сеансы как неактивные
 

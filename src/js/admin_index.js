@@ -29,7 +29,6 @@ popups.forEach(popup => {
   popupForms.forEach(form => {
     popupCancel.forEach(element => {
       element.addEventListener("click", () => {
-        form.reset();
         popup.classList.add("hidden");
       })
     })

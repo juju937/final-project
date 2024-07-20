@@ -328,6 +328,7 @@ a {
 }
 
 .buying__info_hint {
+  visibility: hidden;
   display: flex;
   align-items: center;
   margin-right: 15px;
@@ -1243,4 +1244,111 @@ a {
 
 .hidden {
   display: none;
+}
+
+/*--------------------------------- TABLET -----------------------------------*/
+
+@media screen and (max-width: 990px) {
+  .buying__info_hint {
+    visibility: visible;
+  }
+
+  .popup__container {
+    width: 100%;
+  }
+
+  .popup__form {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+/*--------------------------------- MOBILE -----------------------------------*/
+
+@media screen and (max-width: 500px) {
+  .nav__day-chosen {
+    width: 75px;
+    padding: 10px;
+  }
+
+  .nav__day_current {
+    overflow: hidden;
+  }
+
+  .page-nav__day {
+    padding: 10px;
+  }
+
+  .ticket__button {
+    display: flex;
+    align-items: center;
+  }
+
+  .admin__autorize {
+    width: 100%;
+  }
+
+  .header__admin {
+    padding: 0;
+    align-items: center;
+  }
+
+  .admin__header {
+    padding: 0 10px 0 40px;
+    height: 65px;
+  }
+
+  .admin__section::before {
+    content: '';
+    display: none;
+  }
+
+  .admin__header_text::before {
+    width: 22px;
+    height: 22px;
+    top: 0;
+    left: -30px;
+  }
+
+  .admin__wrapper {
+    padding: 30px;
+  }
+
+  .hall-config__types {
+    flex-wrap: wrap;
+  }
+
+  .hall-config__hall_row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .movie-seances__timelines {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .timeline__seances {
+    min-width: 270px;
+  }
+
+  .open__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .admin__button_open {
+    display: flex;
+    align-items: center;
+  }
+
+  .popup__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .popup__button_save, .popup__button_cancel {
+    min-width: 200px;
+  }
 }

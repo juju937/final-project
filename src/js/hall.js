@@ -169,21 +169,17 @@ function clickButton() {
 
 // получение данные с сервера
 
-fetch("https://shfe-diplom.neto-server.ru/alldata")
-  .then(response => response.json())
-  .then(function(data) {
-    console.log(data);
-    setInfo(data);
+(async function() {
+  const apiService = new ApiService;
 
-    // получение данных о схеме зала
+  try {
+      const data = await apiService.getAllData();
+      setInfo(data);
+      
+      // получить схему зала
+      await apiService.getHallConfig(seanceId, chosenDate);
 
-    fetch(`https://shfe-diplom.neto-server.ru/hallconfig?seanceId=${seanceId}&date=${chosenDate}`)
-    .then(response => response.json())
-    .then(function(data) {
-      console.log(data);
-      showHallScheme(data);
-      choosePlaces(hallSchemeRows);
-      clickButton();
-    })
-
-  })
+  } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+  }
+})();

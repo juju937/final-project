@@ -39,12 +39,16 @@ function getInfo(data) {
 
 // данные с сервера
 
-fetch("https://shfe-diplom.neto-server.ru/alldata")
-  .then(response => response.json())
-  .then(function(data) {
-    console.log(data);
-    getInfo(data);
-  })
+(async function() {
+  const apiService = new ApiService;
+
+  try {
+      const data = await apiService.getAllData();
+      getInfo(data);
+  } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+  }
+})();
 
 // кнопка "Получить код бронирования"
 
