@@ -74,6 +74,22 @@ function showHallScheme(data) {
 
 }
 
+// обработка double tap на мобильных устройствах
+
+body.addEventListener("dblclick", () => {
+  if((Number(body.getBoundingClientRect().width)) < 1200) {
+    if(body.getAttribute("transformed") === "false" || !body.hasAttribute("transformed")) {
+      body.style.transform = "scale(2)";
+      body.style.transformOrigin = "0 0";
+      body.setAttribute("transformed", "true")
+    } else if(body.getAttribute("transformed") === "true") {
+      body.style.transform = "scale(1)";
+      body.style.transformOrigin = "0 0";
+      body.setAttribute("transformed", "false");
+    }
+  }
+})
+
 // выбор мест
 
 function choosePlaces(hallSchemeRows) {
